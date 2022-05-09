@@ -14,11 +14,11 @@ function App() {
       <Navber></Navber>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/apointment" element={<Apointment />}></Route>
+        <Route path="about" element={<About />} />
+        <Route path="appointment" element={<Apointment />}></Route>
         <Route path="reviews" element={<Reviews/>}></Route>
         <Route path="contactus" element={<ContactUs/>}></Route>
-        <Route path="/login" element={<Login/>}></Route>
+        <Route path="login" element={<Login/>}></Route>
       </Routes>
     </div>
   );
