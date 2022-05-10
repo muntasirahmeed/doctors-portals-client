@@ -3,7 +3,7 @@ import chair from "../../../../assets/images/chair.png";
 import bg from '../../../../assets/images/bg.png'
 const Banner = () => {
   return (
-      <div className="hero h-[90vh] container mx-auto bg-no-repeat bg-center sm:bg-none" style={{backgroundImage:`url(${bg})`}}>
+      <div className="hero h-full md:h-[90vh] container mx-auto bg-no-repeat bg-center sm:bg-none" style={{backgroundImage:`url(${bg})`}}>
       <div className="hero-content flex-col lg:flex-row-reverse">
         <img src={chair} alt='chair img' className="max-w-full md:max-w-lg rounded-lg shadow-2xl" />
         <div className="">
