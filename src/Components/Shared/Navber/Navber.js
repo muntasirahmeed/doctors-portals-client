@@ -25,7 +25,7 @@ const Navber = () => {
     </>
   );
   return (
-    <div className="navbar container mx-auto">
+    <div className="navbar px-0 container mx-auto">
       <div className="navbar-start">
         <div className="dropdown ">
           <label tabindex="0" className="btn btn-ghost  lg:hidden">
@@ -51,7 +51,7 @@ const Navber = () => {
             {navItem}
           </ul>
         </div>
-        <Link to="/" className="btn btn-ghost normal-case text-xl">
+        <Link to="/" className="btn px-0 btn-ghost normal-case text-xl">
           Doctors Portal
         </Link>
       </div>
