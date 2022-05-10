@@ -6,7 +6,7 @@ const Footer = () => {
       style={{ background: `url(${footerbg})`, backgroundSize: "contain" }}
       className="  pt-10 px-10 pb-5 bg-no-repeat container mx-auto"
     >
-      <div className="footer place-items-center">
+      <div className="footer  text-xl md:text-[16px]  place-items-start md:place-items-center">
         <div>
           <span className="footer-title">Services</span>
           <a className="link link-hover">Branding</a>
@@ -34,7 +34,7 @@ const Footer = () => {
           <a className="link link-hover">Cookie policy</a>
         </div>
       </div>
-      <div class="text-center  text-sm pt-10 text-accent">
+      <div className="text-center  text-sm pt-10 text-accent">
         <div>
           <p>Copyright © 2022 - All right reserved by Doctors-portal</p>
         </div>
