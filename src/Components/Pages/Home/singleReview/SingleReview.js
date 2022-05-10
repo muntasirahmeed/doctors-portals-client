@@ -6,8 +6,8 @@ const SingleReview = ({ review }) => {
     <div className="px-10 mb-10">
       <p className="text-normal text-gray-600 font-semibold">{description}</p>
       <div className="flex items-center space-x-5 mt-8">
-        <div class="avatar">
-          <div class="w-12 rounded-full ring ring-secondary ring-offset-base-100 ring-offset-2">
+        <div className="avatar">
+          <div className="w-12 rounded-full ring ring-secondary ring-offset-base-100 ring-offset-2">
             <img src={img} alt="avatar" />
           </div>
         </div>

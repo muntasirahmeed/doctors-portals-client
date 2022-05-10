@@ -17,15 +17,15 @@ const StayConnected = () => {
             <input
               type="email"
               placeholder=" Email Address"
-              class="input h-10 w-full max-w-sm mb-4"
+              className="input h-10 w-full max-w-sm mb-4"
             />
             <input
               type="text"
               placeholder="Subject"
-              class="input h-10 w-full max-w-sm mb-4"
+              className="input h-10 w-full max-w-sm mb-4"
             />
             <textarea
-              class="textarea w-full max-w-sm mb-8"
+              className="textarea w-full max-w-sm mb-8"
               placeholder="Your message"
             ></textarea>
             <PrimaryButton>Submit</PrimaryButton>
