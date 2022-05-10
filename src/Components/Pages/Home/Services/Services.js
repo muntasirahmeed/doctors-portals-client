@@ -9,10 +9,10 @@ const Services = () => {
            _id:1, img: fluoride, title: 'Fluoride Treatment',description:'Lorem Ipsum is simply dummy printing and typesetting indust Ipsum has been the'
         },
         {
-            _id:1, img: cavity, title: 'Cavity Filling',description:'Lorem Ipsum is simply dummy printing and typesetting indust Ipsum has been the'
+            _id:2, img: cavity, title: 'Cavity Filling',description:'Lorem Ipsum is simply dummy printing and typesetting indust Ipsum has been the'
         },
         {
-            _id:1, img: teeth, title: 'Teeth Whitening',description:'Lorem Ipsum is simply dummy printing and typesetting indust Ipsum has been the'
+            _id:3, img: teeth, title: 'Teeth Whitening',description:'Lorem Ipsum is simply dummy printing and typesetting indust Ipsum has been the'
         },
     ]
     return (
