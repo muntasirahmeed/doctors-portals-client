@@ -4,7 +4,7 @@ import appoinment from "../../../../assets/images/appointment.png";
 import PrimaryButton from "../../../Shared/PrimaryButton/PrimaryButton";
 const TodayAppointment = () => {
   return (
-    <div className="mt-0 md:mt-52 mb-20" >
+    <div className="mt-10 md:mt-52 mb-20 mx-4 md:mx-0" >
       <div class="container mx-auto " style={{ backgroundImage: `url(${appoinment}) `, }}>
         <div class="flex flex-col lg:flex-row items-center  mx-4 md:mx-0  ">
           {/* <div className="w-full md:w-1/2 "> */}
