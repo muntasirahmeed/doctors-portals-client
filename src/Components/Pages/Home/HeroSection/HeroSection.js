@@ -4,7 +4,7 @@ import PrimaryButton from "../../../Shared/PrimaryButton/PrimaryButton";
 const HeroSection = () => {
   return (
     <div class="container mx-auto mt-0 md:mt-36">
-      <div class="flex flex-col lg:flex-row items-center   mx-4 md:mx-0 my-24">
+      <div class="flex flex-col lg:flex-row items-center   mx-4 md:mx-0 ">
         {/* <div className="w-full md:w-1/2 "> */}
         <div className="flex-1 ">
           <img
