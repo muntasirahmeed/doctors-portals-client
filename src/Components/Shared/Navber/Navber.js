@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Navber = () => {
   const navItem = (
     <>
-      <li>
+      <li >
         <Link to="/">Home</Link>
       </li>
       <li>

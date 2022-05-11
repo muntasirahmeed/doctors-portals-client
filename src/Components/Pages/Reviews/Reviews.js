@@ -2,7 +2,7 @@ import React from 'react';
 
 const Reviews = () => {
     return (
-        <div>
+        <div className='container mx-auto'>
             this is Reviews
         </div>
     );
