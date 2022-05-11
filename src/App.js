@@ -6,7 +6,6 @@ import ContactUs from "./Components/Pages/ContactUs/ContactUs";
 import Home from "./Components/Pages/Home/Home";
 import Login from "./Components/Pages/Login/Login";
 import Reviews from "./Components/Pages/Reviews/Reviews";
-import Footer from "./Components/Shared/Footer/Footer";
 import Navber from "./Components/Shared/Navber/Navber";
 
 function App() {
@@ -21,7 +20,7 @@ function App() {
         <Route path="contactus" element={<ContactUs/>}></Route>
         <Route path="login" element={<Login/>}></Route>
       </Routes>
-      <Footer></Footer>
+      
     </div>
   );
 }

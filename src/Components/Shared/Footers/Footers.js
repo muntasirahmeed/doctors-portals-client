@@ -1,6 +1,6 @@
 import React from "react";
 import footerbg from "../../../assets/images/footer.png";
-const Footer = () => {
+const Footers = () => {
   return (
     <footer
       style={{ background: `url(${footerbg})`, backgroundSize: "contain" }}
@@ -43,4 +43,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default Footers;
