@@ -19,7 +19,7 @@ const Home = () => {
             <TodayAppointment></TodayAppointment>
             <Testimonial></Testimonial>
             <StayConnected></StayConnected>
-            <Footers></Footers>
+           
         </div>
     );
 };

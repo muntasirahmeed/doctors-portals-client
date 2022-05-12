@@ -26,7 +26,7 @@ const TodayAppointment = () => {
             <h1 className="text-4xl font-bold mt-5 md:mt-0 text-white">
               Make an appointment Today
             </h1>
-            <p className="py-6 text-white">
+            <p className="py-6 text-white text-justify">
               It is a long established fact that a reader will be distracted by
               the readable content of a page when looking at its layout. The
               point of using Lorem Ipsumis that it has a more-or-less normal
