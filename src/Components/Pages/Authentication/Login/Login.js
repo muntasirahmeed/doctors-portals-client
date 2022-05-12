@@ -1,25 +1,37 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import SocialLogin from "../SocialLogin/SocialLogin";
 import { useForm } from "react-hook-form";
-import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import {
+  useSignInWithEmailAndPassword,
+  useSignInWithGoogle,
+} from "react-firebase-hooks/auth";
 import auth from "../../../../firebase.init";
 import Spinner from "../../../Shared/Spinner/Spinner";
 const Login = () => {
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
+  const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
-  if (loading ) {
-    return <Spinner></Spinner>
+  if (gLoading || loading) {
+    return <Spinner></Spinner>;
   }
   let errorMsg;
-  if (error) {
-    if(error.message.includes('auth/user-not-found'))
-    errorMsg = <p className="text-sm text-red-500 pl-1">User not exist!</p>;
+  if (error || gError) {
+    if (error?.message.includes("auth/user-not-found"))
+      errorMsg = <p className="text-sm text-red-500 pl-1">User not exist!</p>;
+    else if (gError?.message.includes("closed")) {
+      errorMsg=<p className="text-sm text-red-500 pl-1">Popup Closed</p>
+    } else {
+      errorMsg = (
+        <p className="text-sm text-red-500 pl-1">
+          {error?.message} {gError?.message}
+        </p>
+      );
+    }
   }
   const onSubmit = (data) => {
     signInWithEmailAndPassword(data.email, data.password);
@@ -111,11 +123,16 @@ const Login = () => {
               </span>{" "}
             </p>
           </form>
-          <SocialLogin></SocialLogin>
-
-          {/* 
-            <input {...register("lastName", { required: true })} />
-            {errors.lastName && "Last name is required"} */}
+          <div>
+        
+            <div className="divider">Or</div>
+            <button
+              className="btn btn-outline btn-accent w-full text-white"
+              onClick={() => signInWithGoogle()}
+            >
+              Continue With google
+            </button>
+          </div>
         </div>
       </div>
     </div>
