@@ -1,8 +1,11 @@
 import React from "react";
 import { format } from "date-fns";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../../firebase.init";
 
 const BookingModal = ({ booked, setBooked, date }) => {
   const { _id, name, slots } = booked;
+  const [user] = useAuthState(auth);
   const handleSubmit = (event) => {
     event.preventDefault();
     const treatment = name;
@@ -11,7 +14,6 @@ const BookingModal = ({ booked, setBooked, date }) => {
     const email = event.target.email.value;
     const phone = event.target.phone.value;
     const data = { _id, treatment, slot, patient, email, phone };
-    console.log(data);
     setBooked(null);
   };
   return (
@@ -38,16 +40,24 @@ const BookingModal = ({ booked, setBooked, date }) => {
                 name="timeslot"
                 className="select select-bordered w-full "
               >
-                {slots.map((slot) => (
-                  <option key={slot} value={slot}>
+                {slots.map((slot, index) => (
+                  <option key={index} value={slot}>
                     {slot}
                   </option>
                 ))}
               </select>
               <input
+                disabled
                 type="text"
                 name="name"
-                placeholder="FULL NAME"
+                value={user?.displayName || ''}
+                className="input input-bordered w-full "
+              />
+              <input
+                disabled
+                name="email"
+                type="email"
+                value={user?.email || ''}
                 className="input input-bordered w-full "
               />
               <input
@@ -56,12 +66,7 @@ const BookingModal = ({ booked, setBooked, date }) => {
                 placeholder="PHONE NUMBER"
                 className="input input-bordered w-full "
               />
-              <input
-                name="email"
-                type="email"
-                placeholder="Email"
-                className="input input-bordered w-full "
-              />
+
               <input type="submit" className="btn btn-accent " value="Submit" />
             </div>
           </form>

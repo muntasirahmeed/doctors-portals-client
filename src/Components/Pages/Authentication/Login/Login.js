@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import {
   useSignInWithEmailAndPassword,
@@ -16,6 +16,15 @@ const Login = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
+  const navigate = useNavigate();
+  const location = useLocation();
+  let from = location.state?.from?.pathname || "/";
+
+  useEffect(() => {
+    if (user || gUser) {
+      navigate(from, { replace: true });
+    }
+  }, [user, gUser, from, navigate]);
   if (gLoading || loading) {
     return <Spinner></Spinner>;
   }
@@ -24,7 +33,7 @@ const Login = () => {
     if (error?.message.includes("auth/user-not-found"))
       errorMsg = <p className="text-sm text-red-500 pl-1">User not exist!</p>;
     else if (gError?.message.includes("closed")) {
-      errorMsg=<p className="text-sm text-red-500 pl-1">Popup Closed</p>
+      errorMsg = <p className="text-sm text-red-500 pl-1">Popup Closed</p>;
     } else {
       errorMsg = (
         <p className="text-sm text-red-500 pl-1">
@@ -124,7 +133,6 @@ const Login = () => {
             </p>
           </form>
           <div>
-        
             <div className="divider">Or</div>
             <button
               className="btn btn-outline btn-accent w-full text-white"
