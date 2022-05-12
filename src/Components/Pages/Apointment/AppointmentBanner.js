@@ -19,7 +19,7 @@ const AppointmentBanner = ({date,setDate}) => {
           />
         </div>
         <div className="mr-0 md:mr-20">
-          <div className="shadow rounded-lg ">
+          <div className="shadow rounded-lg bg-white px-3 py-2">
             <DayPicker mode="single" selected={date} onSelect={setDate} />
           </div>
           

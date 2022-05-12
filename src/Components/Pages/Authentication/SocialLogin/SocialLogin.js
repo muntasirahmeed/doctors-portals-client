@@ -1,16 +1,16 @@
 import React from "react";
-import {
-  signInWithGoogle,
-  useSignInWithGoogle,
-} from "react-firebase-hooks/auth";
+import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import auth from "../../../../firebase.init";
 const SocialLogin = () => {
   const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+  if (user) {
+    console.log(user);
+  }
   return (
     <div>
       <div className="divider">Or</div>
       <button
-        class="btn btn-outline btn-accent w-full text-white"
+        className="btn btn-outline btn-accent w-full text-white"
         onClick={() => signInWithGoogle()}
       >
         Continue With google
