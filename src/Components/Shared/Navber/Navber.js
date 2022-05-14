@@ -1,7 +1,7 @@
 import { signOut } from "firebase/auth";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import auth from "../../../firebase.init";
 
 const Navber = () => {
@@ -12,26 +12,26 @@ const Navber = () => {
   const navItem = (
     <>
       <li>
-        <Link to="/">Home</Link>
+        <Link className='focus:bg-accent focus:text-white' to="/">Home</Link>
       </li>
       <li>
-        <Link to="/appointment">Appointment</Link>
+        <Link className='focus:bg-accent focus:text-white' to="/appointment">Appointment</Link>
       </li>
       <li>
-        <Link to="/reviews">Reviews</Link>
+        <Link className='focus:bg-accent focus:text-white' to="/reviews">Reviews</Link>
       </li>
       <li>
-        <Link to="/contactus">Contact</Link>
+        <Link className='focus:bg-accent focus:text-white' to="/contactus">Contact</Link>
       </li>
       <li>
-        <Link to="/about">About</Link>
+        <Link className='focus:bg-accent focus:text-white' to="/about">About</Link>
       </li>
 
       <li>
         {user ? (
-          <button className="font-semibold" onClick={logOut}>SignOut</button>
+          <button  className='font-semibold' onClick={logOut}>SignOut</button>
         ) : (
-          <Link to="/login">Login</Link>
+          <Link className='focus:bg-accent focus:text-white' to="/login">Login</Link>
         )}{" "}
       </li>
     </>

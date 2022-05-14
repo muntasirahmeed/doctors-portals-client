@@ -2,19 +2,45 @@ import React from "react";
 import { format } from "date-fns";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
+import { toast } from "react-toastify";
 
-const BookingModal = ({ booked, setBooked, date }) => {
+const BookingModal = ({ booked, setBooked, date, refetch }) => {
   const { _id, name, slots } = booked;
   const [user] = useAuthState(auth);
   const handleSubmit = (event) => {
     event.preventDefault();
-    const treatment = name;
     const slot = event.target.timeslot.value;
-    const patient = event.target.name.value;
-    const email = event.target.email.value;
-    const phone = event.target.phone.value;
-    const data = { _id, treatment, slot, patient, email, phone };
-    setBooked(null);
+    const formatedDate = format(date, "PP");
+    const bookingData = {
+      treatmentId: _id,
+      treatment: name,
+      date: formatedDate,
+      slot: slot,
+      patient: user.email,
+      patientName: user.displayName,
+      phone: event.target.phone.value,
+    };
+    fetch("http://localhost:5000/booking", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(bookingData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          toast.success(
+            ` Appointment set ${name} on ${formatedDate} time ${slot}`
+          );
+        } else {
+          toast.error(
+            `Already have ${name} appointment on ${data.booking?.date} time ${data.booking?.slot}`
+          );
+        }
+        refetch();
+        setBooked(null);
+      });
   };
   return (
     <div>
@@ -50,14 +76,14 @@ const BookingModal = ({ booked, setBooked, date }) => {
                 disabled
                 type="text"
                 name="name"
-                value={user?.displayName || ''}
+                value={user?.displayName || ""}
                 className="input input-bordered w-full "
               />
               <input
                 disabled
                 name="email"
                 type="email"
-                value={user?.email || ''}
+                value={user?.email || ""}
                 className="input input-bordered w-full "
               />
               <input

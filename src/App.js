@@ -10,10 +10,11 @@ import Reviews from "./Components/Pages/Reviews/Reviews";
 import RequireAuth from "./Components/RequireAuth/RequireAuth";
 import Footers from "./Components/Shared/Footers/Footers";
 import Navber from "./Components/Shared/Navber/Navber";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function App() {
   return (
-    <div className="bg-[#E5E5E5]">
+    <div className="bg-base-100">
       <Navber></Navber>
       <Routes>
         <Route path="/" element={<Home />} />
@@ -32,6 +33,7 @@ function App() {
         <Route path="signup" element={<SignUp />}></Route>
       </Routes>
       <Footers></Footers>
+      <ToastContainer/>
     </div>
   );
 }
