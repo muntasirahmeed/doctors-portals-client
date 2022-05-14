@@ -1,37 +1,62 @@
 import { signOut } from "firebase/auth";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Link, NavLink } from "react-router-dom";
+import { Link} from "react-router-dom";
 import auth from "../../../firebase.init";
 
 const Navber = () => {
   const [user] = useAuthState(auth);
   const logOut = () => {
-    signOut(auth)
-  }
+    signOut(auth);
+  };
   const navItem = (
     <>
       <li>
-        <Link className='focus:bg-accent focus:text-white' to="/">Home</Link>
+        <Link className="focus:bg-accent focus:text-white" to="/">
+          Home
+        </Link>
       </li>
       <li>
-        <Link className='focus:bg-accent focus:text-white' to="/appointment">Appointment</Link>
+        <Link className="focus:bg-accent focus:text-white" to="/appointment">
+          Appointment
+        </Link>
       </li>
       <li>
-        <Link className='focus:bg-accent focus:text-white' to="/reviews">Reviews</Link>
+        <Link className="focus:bg-accent focus:text-white" to="/reviews">
+          Reviews
+        </Link>
       </li>
       <li>
-        <Link className='focus:bg-accent focus:text-white' to="/contactus">Contact</Link>
+        <Link className="focus:bg-accent focus:text-white" to="/contactus">
+          Contact
+        </Link>
       </li>
       <li>
-        <Link className='focus:bg-accent focus:text-white' to="/about">About</Link>
+        <Link className="focus:bg-accent focus:text-white" to="/about">
+          About
+        </Link>
       </li>
 
+      {user && (
+        <li>
+          <Link className="focus:bg-accent focus:text-white" to="/dashboard">
+            Dashboard
+          </Link>
+        </li>
+      )}
+    
       <li>
         {user ? (
-          <button  className='font-semibold' onClick={logOut}>SignOut</button>
+          <button
+            className="font-semibold focus:bg-accent focus:text-white"
+            onClick={logOut}
+          >
+            SignOut
+          </button>
         ) : (
-          <Link className='focus:bg-accent focus:text-white' to="/login">Login</Link>
+          <Link className="focus:bg-accent focus:text-white" to="/login">
+            Login
+          </Link>
         )}{" "}
       </li>
     </>
@@ -59,7 +84,7 @@ const Navber = () => {
             </label>
             <ul
               tabIndex="0"
-              className="menu menu-compact dropdown-content mt-3 p-2 shadow rounded-box w-52 font-semibold"
+              className="menu menu-compact dropdown-content mt-3 p-2 shadow rounded-box w-52 font-semibold bg-white h-screen md:h-auto"
             >
               {navItem}
             </ul>
@@ -68,8 +93,8 @@ const Navber = () => {
             Doctors Portal
           </Link>
         </div>
-        <div className="navbar-end hidden lg:flex">
-          <ul className="menu menu-horizontal p-0 text-md font-semibold ">
+        <div className="navbar-end hidden  lg:flex">
+          <ul className="menu menu-horizontal  p-0 text-md font-semibold ">
             {navItem}
           </ul>
         </div>

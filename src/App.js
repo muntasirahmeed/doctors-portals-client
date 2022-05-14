@@ -12,6 +12,9 @@ import Footers from "./Components/Shared/Footers/Footers";
 import Navber from "./Components/Shared/Navber/Navber";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Dashboard from "./Components/Pages/Dashboard/Dashboard";
+import MyAppointments from "./Components/Pages/Dashboard/MyAppointments";
+import MyReview from "./Components/Pages/Dashboard/MyReview";
 function App() {
   return (
     <div className="bg-base-100">
@@ -27,6 +30,17 @@ function App() {
             </RequireAuth>
           }
         ></Route>
+        <Route
+          path="dashboard"
+          element={
+            <RequireAuth>
+              <Dashboard />
+            </RequireAuth>
+          }
+        >
+          <Route index element={<MyAppointments></MyAppointments>}></Route>
+          <Route  path='myreview' element={<MyReview></MyReview>}></Route>
+        </Route>
         <Route path="reviews" element={<Reviews />}></Route>
         <Route path="contactus" element={<ContactUs />}></Route>
         <Route path="login" element={<Login />}></Route>
