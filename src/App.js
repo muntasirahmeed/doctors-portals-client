@@ -16,6 +16,7 @@ import Dashboard from "./Components/Pages/Dashboard/Dashboard";
 import MyAppointments from "./Components/Pages/Dashboard/MyAppointments";
 import MyReview from "./Components/Pages/Dashboard/MyReview";
 import Users from "./Components/Pages/Dashboard/Users";
+import RequireAdmin from "./Components/RequireAuth/RequireAdmin";
 function App() {
   return (
     <div className="bg-base-100">
@@ -40,8 +41,15 @@ function App() {
           }
         >
           <Route index element={<MyAppointments></MyAppointments>}></Route>
-          <Route  path='myreview' element={<MyReview></MyReview>}></Route>
-          <Route  path='users' element={<Users></Users>}></Route>
+          <Route path="myreview" element={<MyReview></MyReview>}></Route>
+          <Route
+            path="users"
+            element={
+              <RequireAdmin>
+                <Users></Users>
+              </RequireAdmin>
+            }
+          ></Route>
         </Route>
         <Route path="reviews" element={<Reviews />}></Route>
         <Route path="contactus" element={<ContactUs />}></Route>
@@ -49,7 +57,7 @@ function App() {
         <Route path="signup" element={<SignUp />}></Route>
       </Routes>
       <Footers></Footers>
-      <ToastContainer/>
+      <ToastContainer />
     </div>
   );
 }

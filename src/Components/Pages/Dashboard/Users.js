@@ -4,8 +4,13 @@ import Spinner from "../../Shared/Spinner/Spinner";
 import TableRow from "./TableRow";
 
 const Users = () => {
-  const { isLoading, error, data } = useQuery("users", () =>
-    fetch("http://localhost:5000/user").then((res) => res.json())
+  const { isLoading, error, data,refetch } = useQuery("users", () =>
+      fetch("http://localhost:5000/user", {
+          method: 'GET',
+          headers: {
+              authorization:`Bearer ${localStorage.getItem('accessToken')}`
+          }
+    }).then((res) => res.json())
   );
   if (isLoading) {
     return <Spinner></Spinner>;
@@ -27,16 +32,19 @@ const Users = () => {
       {/* --------table--------- */}
       <div className="overflow-x-auto px-5 mb-10">
         <table className="table w-full">
-        <thead>
+          <thead>
             <tr className=" uppercase">
               <th className=" "></th>
-              <th className="text-lg">Name</th>
-              <th className="text-lg">Service</th>
-              <th className="text-lg">Date </th>
-             
+              <th className="text-lg">Email</th>
+              <th className="text-lg">Admin</th>
+              <th className="text-lg">Remove </th>
             </tr>
           </thead>
-          {data.map((user,index)=><TableRow key={user._id} index={index} user={user} ></TableRow>)}
+          <tbody>
+            {data.map((user, index) => (
+              <TableRow key={user._id} index={index} user={user} refetch={refetch}></TableRow>
+            ))}
+          </tbody>
         </table>
       </div>
     </div>
