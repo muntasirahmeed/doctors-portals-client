@@ -9,12 +9,14 @@ const AvailableAppointments = ({ date }) => {
   const [booked, setBooked] = useState(null);
 
   const formatedDate = format(date, "PP");
-  const { data: bookings, isLoading ,refetch} = useQuery(
-    ["availabe", formatedDate],
-    () =>
-      fetch(`http://localhost:5000/available?date=${formatedDate}`).then(
-        (res) => res.json()
-      )
+  const {
+    data: bookings,
+    isLoading,
+    refetch,
+  } = useQuery(["availabe", formatedDate], () =>
+    fetch(
+      `https://shrouded-retreat-40682.herokuapp.com/available?date=${formatedDate}`
+    ).then((res) => res.json())
   );
   if (isLoading) {
     return <Spinner></Spinner>;

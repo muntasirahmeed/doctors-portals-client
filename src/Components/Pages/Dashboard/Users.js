@@ -4,12 +4,12 @@ import Spinner from "../../Shared/Spinner/Spinner";
 import TableRow from "./TableRow";
 
 const Users = () => {
-  const { isLoading,  data,refetch } = useQuery("users", () =>
-      fetch("http://localhost:5000/user", {
-          method: 'GET',
-          headers: {
-              authorization:`Bearer ${localStorage.getItem('accessToken')}`
-          }
+  const { isLoading, data, refetch } = useQuery("users", () =>
+    fetch("https://shrouded-retreat-40682.herokuapp.com/user", {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
     }).then((res) => res.json())
   );
   if (isLoading) {
@@ -42,7 +42,12 @@ const Users = () => {
           </thead>
           <tbody>
             {data.map((user, index) => (
-              <TableRow key={user._id} index={index} user={user} refetch={refetch}></TableRow>
+              <TableRow
+                key={user._id}
+                index={index}
+                user={user}
+                refetch={refetch}
+              ></TableRow>
             ))}
           </tbody>
         </table>
