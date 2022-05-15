@@ -7,6 +7,7 @@ import {
 } from "react-firebase-hooks/auth";
 import auth from "../../../../firebase.init";
 import Spinner from "../../../Shared/Spinner/Spinner";
+import useToken from "../../../../hooks/useToken";
 const Login = () => {
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
@@ -16,15 +17,16 @@ const Login = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
+  const [token ]=useToken(user || gUser)
   const navigate = useNavigate();
   const location = useLocation();
   let from = location.state?.from?.pathname || "/";
 
   useEffect(() => {
-    if (user || gUser) {
+    if (token) {
       navigate(from, { replace: true });
     }
-  }, [user, gUser, from, navigate]);
+  }, [token, from, navigate]);
   if (gLoading || loading) {
     return <Spinner></Spinner>;
   }

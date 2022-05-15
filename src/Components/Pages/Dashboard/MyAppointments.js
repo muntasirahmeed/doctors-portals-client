@@ -1,17 +1,32 @@
+import { signOut } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
 
 const MyAppointments = () => {
   const [appointments, setAppointments] = useState([]);
   const [user] = useAuthState(auth);
+  const navigate = useNavigate();
   useEffect(() => {
     if (user) {
-      fetch(`http://localhost:5000/booking?patient=${user.email}`)
-        .then((res) => res.json())
+      fetch(`http://localhost:5000/booking?patient=${user.email}`, {
+        method: "GET",
+        headers: {
+          authorization: `Bearar ${localStorage.getItem("accessToken")}`,
+        },
+      })
+        .then((res) => {
+          if (res.status === 401 || res.status === 403) {
+            signOut(auth);
+            localStorage.removeItem("accessToken");
+            navigate("/");
+          }
+          return res.json();
+        })
         .then((data) => setAppointments(data));
     }
-  }, [user]);
+  }, [user, navigate]);
 
   return (
     <div className="">
@@ -31,7 +46,7 @@ const MyAppointments = () => {
         <table className="table w-full">
           <thead>
             <tr className=" uppercase">
-              <th className="text-lg hidden md:block ">NO</th>
+              <th className=" "></th>
               <th className="text-lg">Name</th>
               <th className="text-lg">Service</th>
               <th className="text-lg">Date </th>
@@ -41,7 +56,7 @@ const MyAppointments = () => {
           <tbody>
             {appointments.map((a, index) => (
               <tr key={index} className="hover">
-                <th className="capitalize font-semibold text-gray-600 hidden md:block">
+                <th className="capitalize font-semibold text-gray-600 ">
                   {index + 1}
                 </th>
                 <td className="capitalize font-semibold text-gray-600">
