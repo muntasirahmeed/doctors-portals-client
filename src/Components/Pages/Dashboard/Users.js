@@ -4,7 +4,7 @@ import Spinner from "../../Shared/Spinner/Spinner";
 import TableRow from "./TableRow";
 
 const Users = () => {
-  const { isLoading, error, data,refetch } = useQuery("users", () =>
+  const { isLoading,  data,refetch } = useQuery("users", () =>
       fetch("http://localhost:5000/user", {
           method: 'GET',
           headers: {
