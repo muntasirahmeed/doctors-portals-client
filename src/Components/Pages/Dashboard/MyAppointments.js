@@ -3,13 +3,16 @@ import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
+import Spinner from "../../Shared/Spinner/Spinner";
 
 const MyAppointments = () => {
   const [appointments, setAppointments] = useState([]);
   const [user] = useAuthState(auth);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
     if (user) {
+      setLoading(true);
       fetch(
         `https://shrouded-retreat-40682.herokuapp.com/booking?patient=${user.email}`,
         {
@@ -27,7 +30,10 @@ const MyAppointments = () => {
           }
           return res.json();
         })
-        .then((data) => setAppointments(data));
+        .then((data) => {
+          setAppointments(data);
+          setLoading(false);
+        });
     }
   }, [user, navigate]);
 
@@ -40,45 +46,51 @@ const MyAppointments = () => {
         </h1>
         <label
           htmlFor="my-drawer-2"
-          className="btn btn-accent text-white drawer-button lg:hidden "
+          className="btn btn-sm  btn-accent text-white drawer-button lg:hidden "
         >
           Dashboard Items
         </label>
       </div>
-      <div className="overflow-x-auto px-5 mb-10">
-        <table className="table w-full">
-          <thead>
-            <tr className=" uppercase">
-              <th className=" "></th>
-              <th className="text-lg">Name</th>
-              <th className="text-lg">Service</th>
-              <th className="text-lg">Date </th>
-              <th className="text-lg">Time </th>
-            </tr>
-          </thead>
-          <tbody>
-            {appointments.map((a, index) => (
-              <tr key={index} className="hover">
-                <th className="capitalize font-semibold text-gray-600 ">
-                  {index + 1}
-                </th>
-                <td className="capitalize font-semibold text-gray-600">
-                  {a.patientName}
-                </td>
-                <td className="capitalize font-semibold text-gray-600">
-                  {a.treatment}
-                </td>
-                <td className="capitalize font-semibold text-gray-600">
-                  {a.date}
-                </td>
-                <td className="capitalize font-semibold text-gray-600">
-                  {a.slot}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      {loading ? (
+        <Spinner />
+      ) : (
+        <>
+          <div className="overflow-x-auto px-5 mb-10">
+            <table className="table w-full">
+              <thead>
+                <tr className=" uppercase">
+                  <th className=" "></th>
+                  <th className="text-lg">Name</th>
+                  <th className="text-lg">Service</th>
+                  <th className="text-lg">Date </th>
+                  <th className="text-lg">Time </th>
+                </tr>
+              </thead>
+              <tbody>
+                {appointments.map((a, index) => (
+                  <tr key={index} className="hover">
+                    <th className="capitalize font-semibold text-gray-600 ">
+                      {index + 1}
+                    </th>
+                    <td className="capitalize font-semibold text-gray-600">
+                      {a.patientName}
+                    </td>
+                    <td className="capitalize font-semibold text-gray-600">
+                      {a.treatment}
+                    </td>
+                    <td className="capitalize font-semibold text-gray-600">
+                      {a.date}
+                    </td>
+                    <td className="capitalize font-semibold text-gray-600">
+                      {a.slot}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </>
+      )}
     </div>
   );
 };

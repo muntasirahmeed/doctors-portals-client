@@ -17,6 +17,8 @@ import MyAppointments from "./Components/Pages/Dashboard/MyAppointments";
 import MyReview from "./Components/Pages/Dashboard/MyReview";
 import Users from "./Components/Pages/Dashboard/Users";
 import RequireAdmin from "./Components/RequireAuth/RequireAdmin";
+import AddDoctor from "./Components/Pages/Dashboard/AddDoctor";
+import ManageDoctors from "./Components/Pages/Dashboard/ManageDoctors";
 function App() {
   return (
     <div className="bg-base-100">
@@ -47,6 +49,22 @@ function App() {
             element={
               <RequireAdmin>
                 <Users></Users>
+              </RequireAdmin>
+            }
+          ></Route>
+          <Route
+            path="add-doctor"
+            element={
+              <RequireAdmin>
+                <AddDoctor></AddDoctor>
+              </RequireAdmin>
+            }
+          ></Route>
+          <Route
+            path="manage-doctors"
+            element={
+              <RequireAdmin>
+                <ManageDoctors></ManageDoctors>
               </RequireAdmin>
             }
           ></Route>

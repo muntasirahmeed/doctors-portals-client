@@ -1,7 +1,7 @@
 import React from "react";
 import { toast } from "react-toastify";
 
-const TableRow = ({ user, index, refetch }) => {
+const UserRow = ({ user, index, refetch }) => {
   const { email, role } = user;
   const makeAdmin = () => {
     fetch(`https://shrouded-retreat-40682.herokuapp.com/user/admin/${email}`, {
@@ -44,4 +44,4 @@ const TableRow = ({ user, index, refetch }) => {
   );
 };
 
-export default TableRow;
+export default UserRow;

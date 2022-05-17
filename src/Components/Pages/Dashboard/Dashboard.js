@@ -36,14 +36,32 @@ const Dashboard = () => {
             </Link>
           </li>
           {admin && (
-            <li>
-              <Link
-                className="font-semibold text-accent mb-2 focus:bg-gray-300 focus:text-accent"
-                to="/dashboard/users"
-              >
-                All Users
-              </Link>
-            </li>
+            <>
+              <li>
+                <Link
+                  className="font-semibold text-accent mb-2 focus:bg-gray-300 focus:text-accent"
+                  to="/dashboard/users"
+                >
+                  All Users
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="font-semibold text-accent mb-2 focus:bg-gray-300 focus:text-accent"
+                  to="/dashboard/add-doctor"
+                >
+                  Add Doctor
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="font-semibold text-accent mb-2 focus:bg-gray-300 focus:text-accent"
+                  to="/dashboard/manage-doctors"
+                >
+                  Manage Doctors
+                </Link>
+              </li>
+            </>
           )}
         </ul>
       </div>

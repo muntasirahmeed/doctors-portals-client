@@ -1,7 +1,7 @@
 import React from "react";
 import { useQuery } from "react-query";
 import Spinner from "../../Shared/Spinner/Spinner";
-import TableRow from "./TableRow";
+import UserRow from "./UserRow";
 
 const Users = () => {
   const { isLoading, data, refetch } = useQuery("users", () =>
@@ -42,12 +42,12 @@ const Users = () => {
           </thead>
           <tbody>
             {data.map((user, index) => (
-              <TableRow
+              <UserRow
                 key={user._id}
                 index={index}
                 user={user}
                 refetch={refetch}
-              ></TableRow>
+              ></UserRow>
             ))}
           </tbody>
         </table>

@@ -5,7 +5,7 @@ import PrimaryButton from "../../../Shared/PrimaryButton/PrimaryButton";
 const Banner = () => {
   return (
     <div
-      className="hero h-full md:h-[95vh] container mx-auto bg-no-repeat bg-center sm:bg-none"
+      className="hero h-full md:h-[95vh] container mx-auto bg-no-repeat bg-center sm:bg-none "
       style={{ backgroundImage: `url(${bg})` }}
     >
       <div className="hero-content px-4 md:px-0 flex-col lg:flex-row-reverse">
