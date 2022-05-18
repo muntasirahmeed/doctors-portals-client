@@ -1,7 +1,7 @@
 import React from "react";
 
 const Booking = ({ booking, setBooked }) => {
-  const { name, slots } = booking;
+  const { name, slots,price } = booking;
   return (
     <div className="card ">
       <div className="card-body items-center text-center">
@@ -18,6 +18,7 @@ const Booking = ({ booking, setBooked }) => {
         <p className="text-sm uppercase text-neutral">
           {slots.length} {slots.length ? "Spaces" : "Space"} Availabe{" "}
         </p>
+        <p>Price: ${ price}</p>
         <div className="">
           <label
             htmlFor="booked"

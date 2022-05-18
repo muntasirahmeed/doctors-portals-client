@@ -19,6 +19,7 @@ import Users from "./Components/Pages/Dashboard/Users";
 import RequireAdmin from "./Components/RequireAuth/RequireAdmin";
 import AddDoctor from "./Components/Pages/Dashboard/AddDoctor";
 import ManageDoctors from "./Components/Pages/Dashboard/ManageDoctors";
+import Payment from "./Components/Pages/Dashboard/Payment";
 function App() {
   return (
     <div className="bg-base-100">
@@ -44,6 +45,7 @@ function App() {
         >
           <Route index element={<MyAppointments></MyAppointments>}></Route>
           <Route path="myreview" element={<MyReview></MyReview>}></Route>
+          <Route path="payment/:id" element={<Payment></Payment>}></Route>
           <Route
             path="users"
             element={
