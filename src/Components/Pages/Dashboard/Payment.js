@@ -1,9 +1,15 @@
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 import React from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import Spinner from "../../Shared/Spinner/Spinner";
+import CheckoutForm from "./CheckoutForm";
 
 const Payment = () => {
+  const stripePromise = loadStripe(
+    "pk_test_51L0iOtAL8nuA0IetlYxU63Bvia0gn5ZwGjcHEvpDwrsePOe7zINq2mtp7k4ZkFoSX1GHkxKnsuNu2fnLpJqI5GNP00FYxhFiAA"
+  );
   const { id } = useParams();
   const { data: appointment, isLoading } = useQuery(
     ["bookedAppointment", id],
@@ -21,9 +27,7 @@ const Payment = () => {
   }
   return (
     <div className="px-2">
-      <h1 className="text-purple text-4xl text-center py-5 ">
-        Payment Method
-      </h1>
+      <h1 className="text-purple text-4xl text-center py-5 ">Payment Method</h1>
       <div className="flex flex-col md:flex-row justify-center h-[60vh] items-center  gap-5">
         <div class="card w-full md:w-96 bg-base-100 shadow-xl">
           <div class="card-body">
@@ -49,11 +53,9 @@ const Payment = () => {
         </div>
         <div class="card w-full md:w-96 bg-base-100 shadow-xl">
           <div class="card-body">
-            <h2 class="card-title">Card title!</h2>
-            <p>If a dog chews shoes whose shoes does he choose?</p>
-            <div class="card-actions justify-end">
-              <button class="btn btn-primary">Buy Now</button>
-            </div>
+            <Elements stripe={stripePromise}>
+              <CheckoutForm />
+            </Elements>
           </div>
         </div>
       </div>
