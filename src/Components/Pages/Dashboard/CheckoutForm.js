@@ -1,12 +1,12 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useEffect, useState } from "react";
+import Spinner from "../../Shared/Spinner/Spinner";
 
 const CheckoutForm = (appointment) => {
   const stripe = useStripe();
   const elements = useElements();
   const [cardError, setCardError] = useState("");
   const [success, setSuccess] = useState("");
-  const [processing, setProcessing] = useState("");
 
   const [transectionId, setTransectionId] = useState("");
   const [clientSecret, setClientSecret] = useState("");
@@ -56,6 +56,7 @@ const CheckoutForm = (appointment) => {
     }
     // confrim card payment
     setSuccess("");
+
     const { paymentIntent, error: intentError } =
       await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
@@ -85,10 +86,7 @@ const CheckoutForm = (appointment) => {
         body: JSON.stringify(payment),
       })
         .then((res) => res.json())
-        .then((data) => {
-          setProcessing(false);
-          console.log(data);
-        });
+        .then((data) => {});
     }
   };
   return (
@@ -111,9 +109,7 @@ const CheckoutForm = (appointment) => {
           }}
         />
         <button
-          className={` ${
-            !clientSecret ? "bg-red-600" : "bg-green-600"
-          } px-5 py-1 mt-5 text-white font-semibold rounded-sm`}
+          className="btn btn-sm btn-success mt-5"
           type="submit"
           disabled={!stripe || !clientSecret || success}
         >
