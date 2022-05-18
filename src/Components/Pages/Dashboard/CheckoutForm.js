@@ -28,7 +28,6 @@ const CheckoutForm = (appointment) => {
       .then((res) => res.json())
       .then((data) => {
         if (data?.clientSecret) {
-          console.log(data);
           setClientSecret(data.clientSecret);
         }
       });
