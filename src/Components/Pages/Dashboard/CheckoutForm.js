@@ -7,20 +7,24 @@ const CheckoutForm = (appointment) => {
   const [cardError, setCardError] = useState("");
   const [success, setSuccess] = useState("");
   const [processing, setProcessing] = useState("");
+
   const [transectionId, setTransectionId] = useState("");
   const [clientSecret, setClientSecret] = useState("");
   const { _id, price, patientName, patient } = appointment.appointment;
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
-    fetch("http://localhost:5000/create-payment-intent", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        authorization: `Bearar ${localStorage.getItem("accessToken")}`,
-      },
-      body: JSON.stringify({ price }),
-    })
+    fetch(
+      "https://shrouded-retreat-40682.herokuapp.com/create-payment-intent",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearar ${localStorage.getItem("accessToken")}`,
+        },
+        body: JSON.stringify({ price }),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data?.clientSecret) {
@@ -72,7 +76,7 @@ const CheckoutForm = (appointment) => {
         appointment: _id,
         transactionId: paymentIntent.id,
       };
-      fetch(`http://localhost:5000/booking/${_id}`, {
+      fetch(`https://shrouded-retreat-40682.herokuapp.com/booking/${_id}`, {
         method: "PATCH",
         headers: {
           "content-type": "application/json",
@@ -111,7 +115,7 @@ const CheckoutForm = (appointment) => {
             !clientSecret ? "bg-red-600" : "bg-green-600"
           } px-5 py-1 mt-5 text-white font-semibold rounded-sm`}
           type="submit"
-          disabled={!stripe || !clientSecret}
+          disabled={!stripe || !clientSecret || success}
         >
           Pay
         </button>

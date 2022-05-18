@@ -14,7 +14,7 @@ const Payment = () => {
   const { data: appointment, isLoading } = useQuery(
     ["bookedAppointment", id],
     () =>
-      fetch(`http://localhost:5000/booking/${id}`, {
+      fetch(`https://shrouded-retreat-40682.herokuapp.com/booking/${id}`, {
         method: "GET",
         headers: {
           authorization: `Bearar ${localStorage.getItem("accessToken")}`,

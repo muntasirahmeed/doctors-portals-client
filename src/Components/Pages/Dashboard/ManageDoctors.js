@@ -11,7 +11,7 @@ const ManageDoctors = () => {
     isLoading,
     refetch,
   } = useQuery("doctors", () =>
-    fetch("http://localhost:5000/doctor", {
+    fetch("https://shrouded-retreat-40682.herokuapp.com/doctor", {
       method: "GET",
       headers: {
         authorization: `Bearar ${localStorage.getItem("accessToken")}`,

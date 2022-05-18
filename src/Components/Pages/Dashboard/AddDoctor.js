@@ -5,7 +5,9 @@ import { toast } from "react-toastify";
 import Spinner from "../../Shared/Spinner/Spinner";
 const AddDoctor = () => {
   const { data: services, isLoading } = useQuery("services", () =>
-    fetch("http://localhost:5000/service").then((res) => res.json())
+    fetch("https://shrouded-retreat-40682.herokuapp.com/service").then((res) =>
+      res.json()
+    )
   );
   const {
     register,
@@ -36,7 +38,7 @@ const AddDoctor = () => {
             image: doctorImg,
           };
 
-          fetch("http://localhost:5000/doctor", {
+          fetch("https://shrouded-retreat-40682.herokuapp.com/doctor", {
             method: "POST",
             headers: {
               "content-type": "application/json",
